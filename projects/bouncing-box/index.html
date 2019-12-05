@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Bouncing Box</title>
+	<script src="jquery.min.js"></script>
+
+<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+
+	<!-- BEGIN CSS -->
+    	<style>
+    		/* TODO 1 */
+    		.board {
+    		    background-image: url("data:image/jpeg;base64,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");
+    		    background-repeat: no-repeat;
+    		    background-size: 1900px, 1900px, 1900px;
+    		}
+    		.box {
+    			width: 65px;
+    			height: 65px;
+    			background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Target_Corporation_logo_%28vector%29.svg/1200px-Target_Corporation_logo_%28vector%29.svg.png");
+                background-size: contain;
+    			font-size: 300%;
+    			text-align: center;
+    			display: block;
+    			position: absolute;
+    			top: 100px;
+    			left: 0px;
+    		}
+    	</style>
+
+    <!--  END CSS   -->
+
+</head>
+<body class="board">
+
+	<!-- HTML for the box -->
+	<div class="box">0</div>
+
+	<!-- BEGIN JAVASCRIPT -->
+
+	<script>
+		(function(){
+			'use strict'
+/* global jQuery */
+
+// jQuery stuff setup for you
+		var box = jQuery('.box');
+		var boardWidth = jQuery('.board').width();
+
+// TODO 2 - Variable declarations 
+        var position = 0;
+        var points = 0; 
+        var speed = 5;
+        var direction = 1;
+
+        
+        box.css('left', position);
+        box.text(points);
+        
+		function update() {
+// TODO 3 / 6 / 7 / 8
+		
+			position += speed * direction;
+			
+			if(position > boardWidth) {
+			    direction = -1;
+			}
+		    if (position < 0) {
+		        direction = 1
+		    }	
+			box.css('left', position);
+		}
+
+		function handleBoxClick() {
+			// TODO 4 / 5
+			points += 1;
+			box.text(points);
+			position = 0;
+			speed += 4;
+		}
+
+
+        //this executes the update function code every millasecond 
+        //*ex= 50 milliseconds* *smaller means faster* *humans cannot perceve anything faster than 60 ms*
+		setInterval(update, 100);
+        
+        // this executes the handleBoxClick function code every time the box is clicked on
+		box.on('click', handleBoxClick);
+		})();
+	</script>
+</body>
+</html>
